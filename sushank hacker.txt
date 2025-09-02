@@ -1,0 +1,50 @@
+import sys
+
+def get_user_input(prompt):
+    return input(prompt).strip().lower()
+
+def savings_advice(income, expenses):
+    savings = income - expenses
+    if savings < 0:
+        return f"You're spending more than you earn. Try to cut expenses by ${-savings:.2f}."
+    elif savings < income * 0.2:
+        return f"You're saving ${savings:.2f} — consider increasing your savings to at least 20% of income."
+    else:
+        return f"Good job! You're saving ${savings:.2f}, which is a healthy amount."
+
+def tax_estimation(income, country="us"):
+    # Simple flat-rate estimation
+    if country == "us":
+        if income <= 11000:
+            tax_rate = 0.10
+        elif income <= 44725:
+            tax_rate = 0.12
+        elif income <= 95375:
+            tax_rate = 0.22
+        else:
+            tax_rate = 0.24
+    else:
+        tax_rate = 0.20  # default
+
+    estimated_tax = income * tax_rate
+    return f"Estimated annual tax: ${estimated_tax:.2f} at a {tax_rate*100:.0f}% rate."
+
+def investment_advice(risk_level):
+    risk_level = risk_level.lower()
+    if risk_level == "low":
+        return "Consider high-yield savings, bonds, or CDs."
+    elif risk_level == "medium":
+        return "Consider index funds, balanced mutual funds, or dividend stocks."
+    elif risk_level == "high":
+        return "You might explore stocks, ETFs, crypto, or real estate."
+    else:
+        return "Please choose a risk level: low, medium, or high."
+
+def main():
+    print("💰 Welcome to the Personal Finance Chatbot!")
+    
+    while True:
+        print("\nWhat would you like help with?")
+        print("1. Savings advice")
+        print("2. Tax estimation")
+        print("3. Invest
